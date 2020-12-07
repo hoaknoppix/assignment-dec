@@ -31,14 +31,13 @@ public class VoucherServiceImpl implements VoucherService {
   @Override
   public List<GetVoucherResponse> getVouchers(GetVoucherRequest getVoucherRequest) {
     Token token = tokenService
-        .find(getVoucherRequest.getToken(), getVoucherRequest.getEncryptPassword(), getVoucherRequest.getSalt()).orElseThrow(() -> new RuntimeException(""));
+        .find(getVoucherRequest.getToken(), getVoucherRequest.getEncryptPassword(), getVoucherRequest.getSalt()).orElseThrow(() -> new RuntimeException("Token is not valid."));
     List<Voucher> vouchers = voucherRepository.findAllByPhoneNumber(token.getPhoneNumber());
-    List<GetVoucherResponse> responses = vouchers.stream().map(v -> {
+    return vouchers.stream().map(v -> {
       String voucher = v.getVoucher();
       GetVoucherResponse getVoucherResponse = new GetVoucherResponse();
       getVoucherResponse.setVoucherCode(voucher);
       return getVoucherResponse;
     }).collect(Collectors.toList());
-    return responses;
   }
 }
