@@ -1,5 +1,6 @@
 package au.com.nab.mainservice.entity;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -9,7 +10,7 @@ public class Token {
   private Long id;
   private String phoneNumber;
   private String encryptedToken;
-  private String expirationDate;
+  private Date expirationDate;
 
   public String getPhoneNumber() {
     return phoneNumber;
@@ -27,11 +28,11 @@ public class Token {
     this.encryptedToken = encryptedToken;
   }
 
-  public String getExpirationDate() {
+  public Date getExpirationDate() {
     return expirationDate;
   }
 
-  public void setExpirationDate(String expirationDate) {
+  public void setExpirationDate(Date expirationDate) {
     this.expirationDate = expirationDate;
   }
 

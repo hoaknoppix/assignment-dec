@@ -1,20 +1,20 @@
 package au.com.nab.mainservice.dto;
 
 public class TokenResponse {
-  private String status;
+  private String token;
 
-  public String getStatus() {
-    return status;
+  public String getToken() {
+    return token;
   }
 
-  public void setStatus(String status) {
-    this.status = status;
+  public void setToken(String token) {
+    this.token = token;
   }
 
   @Override
   public String toString() {
     return "TokenResponse{" +
-        "status='" + status + '\'' +
+        ", token='" + token + '\'' +
         '}';
   }
 }
