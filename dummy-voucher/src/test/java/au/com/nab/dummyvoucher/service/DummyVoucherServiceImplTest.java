@@ -3,7 +3,6 @@ package au.com.nab.dummyvoucher.service;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import au.com.nab.dummyvoucher.config.properties.ApplicationProperties;
-import au.com.nab.dummyvoucher.dto.VoucherRequest;
 import au.com.nab.dummyvoucher.dto.VoucherResponse;
 import au.com.nab.dummyvoucher.service.impl.DummyVoucherServiceImpl;
 import java.util.Date;
@@ -24,9 +23,7 @@ public class DummyVoucherServiceImplTest {
 
   @Test
   public void getVoucher() throws InterruptedException {
-    VoucherRequest voucherRequest = new VoucherRequest();
-    voucherRequest.setToken("SAMPLE_TOKEN");
-    VoucherResponse response = dummyVoucherService.createVoucher(voucherRequest);
+    VoucherResponse response = dummyVoucherService.createVoucher();
     assertNotNull(response);
     String code = response.getCode();
     Date expiration = response.getExpiration();

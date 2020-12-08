@@ -1,15 +1,15 @@
 package au.com.nab.mainservice.dto;
 
 public class VoucherRequest {
-  private String customerId;
+  private String phoneNumber;
   private String token;
 
-  public String getCustomerId() {
-    return customerId;
+  public String getPhoneNumber() {
+    return phoneNumber;
   }
 
-  public void setCustomerId(String customerId) {
-    this.customerId = customerId;
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
   public String getToken() {
@@ -23,7 +23,7 @@ public class VoucherRequest {
   @Override
   public String toString() {
     return "VoucherRequest{" +
-        "customerId='" + customerId + '\'' +
+        "customerId='" + phoneNumber + '\'' +
         ", token='" + token + '\'' +
         '}';
   }

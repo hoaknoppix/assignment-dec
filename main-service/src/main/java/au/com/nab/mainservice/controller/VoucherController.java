@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,7 +34,7 @@ public class VoucherController {
 
   @GetMapping(value = "/vouchers", produces = {APPLICATION_JSON_VALUE}, consumes = {APPLICATION_JSON_VALUE})
   @ResponseStatus(HttpStatus.OK)
-  public List<GetVoucherResponse> getVouchers(GetVoucherRequest getVoucherRequest) {
-    return voucherService.getVouchers(getVoucherRequest);
+  public List<GetVoucherResponse> getVouchers(@RequestParam String token, @RequestParam String salt, @RequestParam String encryptPassword) {
+    return voucherService.getVouchers(token, salt, encryptPassword);
   }
 }

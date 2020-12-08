@@ -9,7 +9,7 @@ public class Voucher {
   @Id
   private Long id;
   private String phoneNumber;
-  private String voucher;
+  private String code;
   private Date expirationDate;
 
   public String getPhoneNumber() {
@@ -20,12 +20,12 @@ public class Voucher {
     this.phoneNumber = phoneNumber;
   }
 
-  public String getVoucher() {
-    return voucher;
+  public String getCode() {
+    return code;
   }
 
-  public void setVoucher(String voucher) {
-    this.voucher = voucher;
+  public void setCode(String voucher) {
+    this.code = voucher;
   }
 
   public Date getExpirationDate() {
@@ -41,7 +41,7 @@ public class Voucher {
     return "Voucher{" +
         "id=" + id +
         ", phoneNumber='" + phoneNumber + '\'' +
-        ", voucher='" + voucher + '\'' +
+        ", code='" + code + '\'' +
         ", expirationDate=" + expirationDate +
         '}';
   }
