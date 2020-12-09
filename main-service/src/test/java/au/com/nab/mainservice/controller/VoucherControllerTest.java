@@ -68,7 +68,6 @@ public class VoucherControllerTest {
     List<Voucher> voucherList = new ArrayList<>();
     Voucher voucher = new Voucher();
     voucher.setCode("123");
-    voucher.setPhoneNumber("123");
     voucher.setExpirationDate(new Date());
     voucherList.add(voucher);
     when(voucherRepository.findAllByPhoneNumber(any())).thenReturn(voucherList);
