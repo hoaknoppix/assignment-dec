@@ -8,7 +8,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import au.com.nab.mainservice.client.VoucherClient;
-import au.com.nab.mainservice.dto.GetVoucherRequest;
+import au.com.nab.mainservice.client.SmsClient;
 import au.com.nab.mainservice.dto.GetVoucherResponse;
 import au.com.nab.mainservice.dto.VoucherRequest;
 import au.com.nab.mainservice.dto.VoucherResponse;
@@ -46,11 +46,11 @@ public class VoucherServiceImplTest {
     public void createVoucher() {
         VoucherRequest voucherRequest = new VoucherRequest();
         voucherRequest.setPhoneNumber("123");
-        voucherRequest.setToken("456");
+        voucherRequest.setVoucherServiceToken("456");
         au.com.nab.mainservice.client.dto.VoucherResponse externalVoucherResponse = new au.com.nab.mainservice.client.dto.VoucherResponse();
         externalVoucherResponse.setCode("789");
         externalVoucherResponse.setExpiration(new Date());
-        when(voucherClient.createVoucher()).thenReturn(externalVoucherResponse);
+        when(voucherClient.createVoucher(any())).thenReturn(externalVoucherResponse);
         VoucherResponse voucherResponse = voucherService.createVoucher(voucherRequest);
         ArgumentCaptor<Voucher> voucherArgumentCaptor = ArgumentCaptor.forClass(Voucher.class);
         verify(voucherRepository).saveAndFlush(voucherArgumentCaptor.capture());
@@ -79,7 +79,7 @@ public class VoucherServiceImplTest {
         when(voucherRepository.findAllByPhoneNumber(any())).thenReturn(vouchers);
         try {
             voucherService.getVouchers("123", "123", "123");
-            fail("Excpetion must be thrown");
+            fail("Exception must be thrown");
         } catch (Exception tokenNotFoundException) {
             assertTrue(tokenNotFoundException instanceof TokenNotFoundException);
         }

@@ -1,6 +1,7 @@
 package au.com.nab.mainservice.dto;
 
-import com.sun.istack.NotNull;
+
+import javax.validation.constraints.NotNull;
 
 public class TokenRequest {
   @NotNull

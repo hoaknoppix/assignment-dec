@@ -1,4 +1,4 @@
-package au.com.nab.mainservice.dto;
+package au.com.nab.mainservice.client.dto;
 
 public class VoucherRequest {
   private String phoneNumber;

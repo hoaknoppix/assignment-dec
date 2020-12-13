@@ -51,7 +51,7 @@ public class VoucherControllerTest {
     TokenResponse tokenResponse = new TokenResponse();
     tokenResponse.setToken("sample_token");
     when(tokenService.create(any())).thenReturn(tokenResponse);
-    when(voucherClient.createVoucher()).thenReturn(new au.com.nab.mainservice.client.dto.VoucherResponse());
+    when(voucherClient.createVoucher(any())).thenReturn(new au.com.nab.mainservice.client.dto.VoucherResponse());
     MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/v1/voucher").content("{\"phoneNumber\": \"123\", \"token\": \"456\"}").contentType(
         MediaType.APPLICATION_JSON)
         .accept(MediaType.APPLICATION_JSON);

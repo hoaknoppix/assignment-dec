@@ -16,6 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+import org.springframework.security.crypto.encrypt.AesBytesEncryptor;
 import org.springframework.security.crypto.encrypt.BytesEncryptor;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.security.crypto.keygen.KeyGenerators;
@@ -55,7 +56,7 @@ public class TokenServiceImplTest {
         SmsRequest smsRequest = smsArgumentCaptor.getValue();
         assertNotNull(smsRequest);
         String salt = smsRequest.getMessage().split(":")[1].trim();
-        BytesEncryptor bytesEncryptor = Encryptors.standard(tokenRequest.getEncryptPassword(), salt);
+        BytesEncryptor bytesEncryptor = new AesBytesEncryptor(tokenRequest.getEncryptPassword(), salt);
         byte[] decryptedBytes = bytesEncryptor.decrypt(Base64.getDecoder().decode(encryptedToken));
         String decryptedToken = new String(decryptedBytes);
         assertEquals(token, decryptedToken);

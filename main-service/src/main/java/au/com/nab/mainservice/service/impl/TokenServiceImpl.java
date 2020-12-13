@@ -11,10 +11,9 @@ import java.util.Base64;
 import java.util.Calendar;
 import java.util.Optional;
 import java.util.UUID;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.crypto.encrypt.AesBytesEncryptor;
 import org.springframework.security.crypto.encrypt.BytesEncryptor;
-import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +34,7 @@ public class TokenServiceImpl implements TokenService {
     Calendar calendar = Calendar.getInstance();
     calendar.add(Calendar.HOUR, 1);
     String salt = KeyGenerators.string().generateKey();
-    sendSms(salt);
+    sendSms(salt, request.getPhoneNumber());
     String tokenString = UUID.randomUUID().toString();
     String encryptedToken = createEncryptedToken(request.getEncryptPassword(), salt, tokenString);
     token.setEncryptedToken(encryptedToken);
@@ -48,8 +47,9 @@ public class TokenServiceImpl implements TokenService {
   }
 
   @Async
-  public void sendSms(String salt) {
+  public void sendSms(String salt, String phoneNumber) {
     SmsRequest smsRequest = new SmsRequest();
+    smsRequest.setPhoneNumber(phoneNumber);
     smsRequest.setMessage("Your salt value is:" + salt);
     smsClient.sendSms(smsRequest);
   }
@@ -61,7 +61,7 @@ public class TokenServiceImpl implements TokenService {
   }
 
   private String createEncryptedToken(String encryptedPassword, String salt, String tokenString) {
-    BytesEncryptor bytesEncryptor = Encryptors.standard(encryptedPassword, salt);
+    BytesEncryptor bytesEncryptor = new AesBytesEncryptor(encryptedPassword, salt);
     byte[] bytes = bytesEncryptor.encrypt(tokenString.getBytes());
     return Base64.getEncoder().encodeToString(bytes);
   }
