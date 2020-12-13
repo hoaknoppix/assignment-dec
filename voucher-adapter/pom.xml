@@ -9,9 +9,9 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>au.com.nab</groupId>
-  <artifactId>voucheradapter</artifactId>
+  <artifactId>voucher-adapter</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>voucheradapter</name>
+  <name>voucher-adapter</name>
   <description>Voucher service adapter for time out</description>
 
   <properties>

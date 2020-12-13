@@ -23,7 +23,8 @@ public class DummyVoucherServiceImpl implements DummyVoucherService {
    */
   @Override
   public VoucherResponse createVoucher() throws InterruptedException {
-    int sleepTime = random.nextInt(applicationProperties.getSleepTime()) * 1000;
+//    int sleepTime = random.nextInt(applicationProperties.getSleepTime()) * 1000;
+    int sleepTime = applicationProperties.getSleepTime() * 1000;
     Thread.sleep(sleepTime);
     VoucherResponse voucherResponse = new VoucherResponse();
     voucherResponse.setCode(UUID.randomUUID().toString());
