@@ -1,7 +1,6 @@
 package au.com.nab.dummyvoucher.service.impl;
 
 import au.com.nab.dummyvoucher.config.properties.ApplicationProperties;
-import au.com.nab.dummyvoucher.dto.VoucherRequest;
 import au.com.nab.dummyvoucher.dto.VoucherResponse;
 import au.com.nab.dummyvoucher.service.DummyVoucherService;
 import java.util.Calendar;
@@ -19,13 +18,13 @@ public class DummyVoucherServiceImpl implements DummyVoucherService {
   }
   /**
    * As this is a dummy 3rd party service, I made it simple without any spring security for authentication.
-   * @param voucherRequest the input request.
-   * @return voucherResponse which contains the sample token to create a voucher.
+   * * @return voucherResponse which contains the sample token to create a voucher.
    * @throws InterruptedException when thread.sleep has any issues.
    */
   @Override
-  public VoucherResponse createVoucher(VoucherRequest voucherRequest) throws InterruptedException {
-    int sleepTime = random.nextInt(applicationProperties.getSleepTime()) * 1000;
+  public VoucherResponse createVoucher() throws InterruptedException {
+//    int sleepTime = random.nextInt(applicationProperties.getSleepTime()) * 1000;
+    int sleepTime = applicationProperties.getSleepTime() * 1000;
     Thread.sleep(sleepTime);
     VoucherResponse voucherResponse = new VoucherResponse();
     voucherResponse.setCode(UUID.randomUUID().toString());

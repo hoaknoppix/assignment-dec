@@ -1,4 +1,4 @@
-package au.com.nab.dummysms.dto;
+package au.com.nab.mainservice.client.dto;
 
 public class SmsRequest {
   private String phoneNumber;

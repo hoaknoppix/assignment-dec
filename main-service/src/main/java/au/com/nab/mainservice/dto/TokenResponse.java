@@ -1,6 +1,6 @@
-package au.com.nab.dummyvoucher.dto;
+package au.com.nab.mainservice.dto;
 
-public class VoucherRequest {
+public class TokenResponse {
   private String token;
 
   public String getToken() {
@@ -13,8 +13,8 @@ public class VoucherRequest {
 
   @Override
   public String toString() {
-    return "VoucherRequest{" +
-        "token='" + token + '\'' +
+    return "TokenResponse{" +
+        ", token='" + token + '\'' +
         '}';
   }
 }
