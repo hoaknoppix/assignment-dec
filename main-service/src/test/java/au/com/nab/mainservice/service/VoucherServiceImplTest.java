@@ -10,6 +10,7 @@ import static org.mockito.Mockito.when;
 import au.com.nab.mainservice.client.VoucherClient;
 import au.com.nab.mainservice.client.SmsClient;
 import au.com.nab.mainservice.dto.GetVoucherResponse;
+import au.com.nab.mainservice.dto.VoucherCallbackRequest;
 import au.com.nab.mainservice.dto.VoucherRequest;
 import au.com.nab.mainservice.dto.VoucherResponse;
 import au.com.nab.mainservice.entity.Token;
@@ -61,6 +62,18 @@ public class VoucherServiceImplTest {
         assertEquals(externalVoucherResponse.getCode(), voucherResponse.getVoucherCode());
         assertEquals(externalVoucherResponse.getExpiration(), voucherResponse.getExpirationDate());
         assertEquals("Valid", voucherResponse.getStatus());
+    }
+
+    @Test
+    public void saveVoucher() {
+        VoucherCallbackRequest voucherRequest = new VoucherCallbackRequest();
+        voucherRequest.setPhoneNumber("123");
+        voucherRequest.setVoucherServiceToken("456");
+        voucherRequest.setCode("789");
+        voucherRequest.setExpiration(new Date());
+        voucherService.saveVoucher(voucherRequest);
+        ArgumentCaptor<Voucher> voucherArgumentCaptor = ArgumentCaptor.forClass(Voucher.class);
+        verify(voucherRepository).saveAndFlush(voucherArgumentCaptor.capture());
     }
 
     @Test

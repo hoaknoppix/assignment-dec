@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "e786717d-d4de-4c29-af0c-fc9ea0680318",
+		"name": "nab",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/v1/voucher",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phoneNumber\": \"12345\",\n    \"voucherServiceToken\": \"745fc5be-3f87-486f-90ed-5f71bcbb2ccd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/voucher",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"voucher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8082/v1/sms",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"message\": \"abc\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/v1/sms",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"v1",
+						"sms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/v1/vouchers?token=40c520e2-284f-46c4-9ed8-34d1a04a9547&encryptPassword=1234&salt=065c2c8468899783",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/vouchers?token=40c520e2-284f-46c4-9ed8-34d1a04a9547&encryptPassword=1234&salt=065c2c8468899783",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"vouchers"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "40c520e2-284f-46c4-9ed8-34d1a04a9547"
+						},
+						{
+							"key": "encryptPassword",
+							"value": "1234"
+						},
+						{
+							"key": "salt",
+							"value": "065c2c8468899783"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
